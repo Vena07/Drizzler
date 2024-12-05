@@ -1,0 +1,33 @@
+const pridaniAbsence = async () => {
+    if (!vybranyzak || !datum || !duvod) {
+      alert('Vyplňte všechny údaje!');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/pridaniabsence', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id_zaka: vybranyzak.id_zaka, // Posíláme ID žáka
+          datum,
+          duvod,
+        }),
+      });
+
+      if (response.ok) {
+        const novaAbsence = await response.json();
+        absencex = [...absencex, novaAbsence]; // Aktualizace lokálního pole absencí
+        datum = '';
+        duvod = '';
+        alert('Absence byla úspěšně přidána.');
+      } else {
+        const errorText = await response.text();
+        console.error('Chyba při přidávání absence:', errorText);
+        alert('Chyba při přidávání absence: ' + errorText);
+      }
+    } catch (error) {
+      console.error('Chyba při přidávání absence:', error);
+      alert('Chyba při přidávání absence.');
+    }
+  };

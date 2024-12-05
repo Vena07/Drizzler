@@ -1,0 +1,21 @@
+ const loadData = async (table) => {
+    try {
+      const response = await fetch(`/api/data?table=${table}`);
+      if (response.ok) {
+        return await response.json();
+      } else {
+        console.error(`Chyba při načítání ${table}:`, await response.text());
+        return [];
+      }
+    } catch (error) {
+      console.error(`Chyba při načítání ${table}:`, error);
+      return [];
+    }
+  };
+
+  // Načítání dat pomocí $effect
+  $effect(() => {
+    loadData('trida').then((data) => (tridy = data));
+    loadData('zak').then((data) => (zaci = data));
+    loadData('absence').then((data) => (absencex = data));
+  });

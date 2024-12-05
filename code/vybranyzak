@@ -1,0 +1,3 @@
+ $effect(() => {
+    vybranyzak = zaci.find((zak) => zak.jmeno === zacivybrano);
+  });

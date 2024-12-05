@@ -1,0 +1,12 @@
+// Správa stavu (reaktivní)
+  let zaci = $state([]);
+  let absencex = $state([]);
+  let tridy = $state([]);
+
+  // Vybraný žák
+  let zacivybrano = $state('');
+  let vybranyzak = $state(null);
+
+  // Vkládání absence
+  let datum = $state('');
+  let duvod = $state('');
